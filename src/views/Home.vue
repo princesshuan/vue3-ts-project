@@ -11,6 +11,7 @@
           </el-col>
           <el-col class="btn-text" :span="4">
             <el-button type="text">zhouhuan</el-button>
+            <el-button @click="logout">退出</el-button>
           </el-col>
         </el-row>
       </el-header>
@@ -48,9 +49,14 @@
       const route = useRoute()
       const list = router.getRoutes().filter(v => v.meta.isShow)
       console.log(list)
+      const logout = ()=>{
+        localStorage.removeItem('token')
+        router.push('/login')
+      }
       return {
         list,
-        active:route.path
+        active:route.path,
+        logout
       }
     }
   });
